@@ -1,5 +1,5 @@
-FROM openjdk:17
-COPY /out/artifacts/gb_spring_s03_jar/gb-spring-s03.jar /usr/src/my-app/gb-spring-s03.jar
-WORKDIR /usr/src/my-app/
+FROM openjdk:latest
+VOLUME /tmp
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "gb-spring-s03.jar"]
+COPY target/*.jar gb-spring-s03-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/gb-spring-s03-0.0.1-SNAPSHOT.jar"]
