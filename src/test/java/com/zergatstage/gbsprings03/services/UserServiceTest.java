@@ -5,6 +5,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
@@ -25,7 +27,7 @@ class UserServiceTest {
 
     @Test
     void createUser() {
-        user = new User(name,age,email);
+        user = new User(UUID.randomUUID(), name,age,email);
         assertNotNull(user);
         assertEquals(age,user.getAge());
         assertEquals(name,user.getName());
