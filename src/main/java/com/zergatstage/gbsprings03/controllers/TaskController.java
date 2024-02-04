@@ -2,6 +2,7 @@ package com.zergatstage.gbsprings03.controllers;
 
 import com.zergatstage.gbsprings03.model.NoItemFoundException;
 import com.zergatstage.gbsprings03.model.Task;
+import com.zergatstage.gbsprings03.services.RegistrationService;
 import com.zergatstage.gbsprings03.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,9 @@ import java.util.UUID;
 public class TaskController {
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private RegistrationService registrationService;
 
     @GetMapping
     public List<Task> getAllTasks(){
