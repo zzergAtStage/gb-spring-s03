@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 public class NotificationService {
 
     public NotificationService(){
-        System.out.println("Notification service created!?");
+        System.out.println("INFO: Notification service created!?");
     }
 
     public void callNotify(String userId){
-        System.out.println("User " + userId + " created");
+        System.out.println("NOTIFICATION: User " + userId + " created");
     }
 
 }

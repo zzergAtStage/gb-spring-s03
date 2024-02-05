@@ -22,14 +22,15 @@ public class RegistrationService {
     public DataProcessingService getDataProcessingService(){
         return getDataProcessingService;
     }
-    public User processRegistration(Model model){
-        String name = Objects.requireNonNull(model.getAttribute("name")).toString();
-        int age = Integer.getInteger(String.valueOf(model.getAttribute("age")));
-        String email = Objects.requireNonNull(model.getAttribute("email")).toString();
-        User newUser = userService.createUser(name, age, email);
+    public User processRegistration(User user){
+        User newUser = userService.createUser(user.getName(), user.getAge(), user.getEmail());
         userRepository.save(newUser);
         return newUser;
     }
-
+    public User processRegistration(String userName, int userAge, String email){
+        User newUser = userService.createUser(userName, userAge, email);
+        userRepository.save(newUser);
+        return newUser;
+    }
 
 }

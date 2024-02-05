@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class UserRepository {
@@ -43,7 +42,7 @@ public class UserRepository {
         return user;
     }
 
-    public void deleteById(UUID id){
+    public void deleteById(int id){
         String sql = "DELETE FROM users WHERE id=?";
         jdbc.update(sql,id);
     }
@@ -53,9 +52,10 @@ public class UserRepository {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User rowObject = new User();
-            rowObject.setId(UUID.fromString(rs.getString("id")));
+            rowObject.setId((rs.getInt("id")));
             rowObject.setName(rs.getString("userName"));
             rowObject.setEmail(rs.getString("email"));
+            rowObject.setAge(rs.getInt("userAge"));
             return rowObject;
         }
     }

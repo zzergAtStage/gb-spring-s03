@@ -27,7 +27,7 @@ class UserServiceTest {
 
     @Test
     void createUser() {
-        user = new User(UUID.randomUUID(), name,age,email);
+        user = new User( name,age,email);
         assertNotNull(user);
         assertEquals(age,user.getAge());
         assertEquals(name,user.getName());
