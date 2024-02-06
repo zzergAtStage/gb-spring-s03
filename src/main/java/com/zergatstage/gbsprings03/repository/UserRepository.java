@@ -1,6 +1,7 @@
 package com.zergatstage.gbsprings03.repository;
 
 import com.zergatstage.gbsprings03.model.User;
+import com.zergatstage.gbsprings03.services.SQLTemplates;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,37 +15,37 @@ import java.util.List;
 public class UserRepository {
     private final JdbcTemplate jdbc;
 
-    public UserRepository(JdbcTemplate jdbc) {
+    private final SQLTemplates sqlTemplates;
+    public UserRepository(JdbcTemplate jdbc, SQLTemplates templates) {
         this.jdbc = jdbc;
+        this.sqlTemplates = templates;
     }
 
     public List<User> findAll(){
-        String sql = "SELECT * FROM users";
-
-
-        return jdbc.query(sql, new UserRowMapper());
+        //String sql = "SELECT * FROM users";
+        return jdbc.query(sqlTemplates.getFindAllUsers(), new UserRowMapper());
     }
     public User findById(int id){
-        String sql = "SELECT * FROM users where id=?";
-        return jdbc.queryForObject(sql, new BeanPropertyRowMapper<>(User.class),id);
+        //String sql = "SELECT * FROM users where id=?";
+        return jdbc.queryForObject(sqlTemplates.getFindUserById(), new BeanPropertyRowMapper<>(User.class),id);
     }
 
 
     public User save(User user){
-        String sql = "INSERT INTO users (userAge, userName, email) VALUES (?,?,?)";
-        jdbc.update(sql,user.getAge(), user.getName(),user.getEmail());
+        //String sql = "INSERT INTO users (userAge, userName, email) VALUES (?,?,?)";
+        jdbc.update(sqlTemplates.getInsertUser(),user.getAge(), user.getName(),user.getEmail());
         return user;
     }
 
     public User update(User user){
-        String sql = "UPDATE users SET userAge=?, userName=?, email=? WHERE id=?";
-        jdbc.update(sql,user.getAge(), user.getName(), user.getEmail(), user.getId());
+        //String sql = "UPDATE users SET userAge=?, userName=?, email=? WHERE id=?";
+        jdbc.update(sqlTemplates.getUpdateUser(),user.getAge(), user.getName(), user.getEmail(), user.getId());
         return user;
     }
 
     public void deleteById(int id){
-        String sql = "DELETE FROM users WHERE id=?";
-        jdbc.update(sql,id);
+        //String sql = "DELETE FROM users WHERE id=?";
+        jdbc.update(sqlTemplates.getDeleteUser(),id);
     }
 
 
