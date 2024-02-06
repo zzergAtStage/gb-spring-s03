@@ -5,6 +5,7 @@ import com.zergatstage.gbsprings03.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class UserController {
         service.processRegistration(userName,userAge,email);
         return ResponseEntity.ok("User " + userName + " created.");
     }
+
 
     @GetMapping("/sort")
     public List<User> getSortedByAgeUserList(){

@@ -21,6 +21,8 @@ public class TaskController {
     @Autowired
     private RegistrationService registrationService;
 
+
+
     @GetMapping
     public List<Task> getAllTasks(){
         return taskService.getAllTasks();
